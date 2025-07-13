@@ -37,6 +37,7 @@
 
     --radius: 0.75rem;
 
+    /* Sidebar colors */
     --sidebar-background: 255 255 255;
     --sidebar-foreground: 15 23 42;
     --sidebar-primary: 59 130 246;
@@ -45,6 +46,10 @@
     --sidebar-accent-foreground: 15 23 42;
     --sidebar-border: 226 232 240;
     --sidebar-ring: 59 130 246;
+
+    /* Professional amber for ratings and important highlights */
+    --warning: 245 158 11;
+    --warning-foreground: 255 255 255;
   }
 
   .dark {
@@ -84,6 +89,9 @@
     --sidebar-accent-foreground: 248 250 252;
     --sidebar-border: 51 65 85;
     --sidebar-ring: 59 130 246;
+
+    --warning: 245 158 11;
+    --warning-foreground: 255 255 255;
   }
 }
 
