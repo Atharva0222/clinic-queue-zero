@@ -1,14 +1,27 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { useAuth } from '@/contexts/AuthContext';
+import { LoginScreen } from '@/components/auth/LoginScreen';
+import { PatientDashboard } from '@/components/patient/PatientDashboard';
+import { DoctorDashboard } from '@/components/doctor/DoctorDashboard';
+import { CompounderDashboard } from '@/components/compounder/CompounderDashboard';
 
 const Index = () => {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
-  );
+  const { user } = useAuth();
+
+  if (!user) {
+    return <LoginScreen />;
+  }
+
+  switch (user.role) {
+    case 'patient':
+      return <PatientDashboard />;
+    case 'doctor':
+      return <DoctorDashboard />;
+    case 'compounder':
+      return <CompounderDashboard />;
+    default:
+      return <LoginScreen />;
+  }
 };
 
 export default Index;
