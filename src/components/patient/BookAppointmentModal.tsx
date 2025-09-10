@@ -72,7 +72,7 @@ export const BookAppointmentModal: React.FC<BookAppointmentModalProps> = ({
               <p className="text-gray-600">{doctor.specialization}</p>
               <div className="flex items-center gap-3 mt-2">
                 <div className="flex items-center">
-                  <Star className="h-4 w-4 text-warning fill-current" />
+                  <Star className="h-4 w-4 text-amber-500 fill-current" />
                   <span className="text-sm text-gray-600 ml-1">{doctor.rating}</span>
                 </div>
                 <div className="flex items-center">
