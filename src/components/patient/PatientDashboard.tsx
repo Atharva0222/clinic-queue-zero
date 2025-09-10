@@ -162,7 +162,7 @@ export const PatientDashboard = () => {
                     <p className="text-sm text-gray-600">{doctor.specialization}</p>
                     <div className="flex items-center gap-2 mt-1">
                       <div className="flex items-center">
-                        <Star className="h-3 w-3 text-amber-500 fill-current" />
+                        <Star className="h-3 w-3 text-warning fill-current" />
                         <span className="text-xs text-gray-600 ml-1">{doctor.rating}</span>
                       </div>
                       <span className="text-xs text-gray-400">•</span>
