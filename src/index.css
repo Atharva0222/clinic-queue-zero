@@ -47,9 +47,9 @@
     --sidebar-border: 214 32% 91%;
     --sidebar-ring: 217 91% 60%;
 
-    /* Professional amber for ratings and important highlights */
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 100%;
+    /* Light gray for subtle highlights */
+    --warning: 0 0% 93%;
+    --warning-foreground: 222 84% 5%;
   }
 
   .dark {
@@ -90,8 +90,8 @@
     --sidebar-border: 215 28% 25%;
     --sidebar-ring: 217 91% 60%;
 
-    --warning: 38 92% 50%;
-    --warning-foreground: 0 0% 100%;
+    --warning: 0 0% 93%;
+    --warning-foreground: 222 84% 5%;
   }
 }
 
