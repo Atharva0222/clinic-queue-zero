@@ -9,6 +9,7 @@ import { LoginScreen } from "@/components/auth/LoginScreen";
 import { PatientDashboard } from "@/components/patient/PatientDashboard";
 import { DoctorDashboard } from "@/components/doctor/DoctorDashboard";
 import { CompounderDashboard } from "@/components/compounder/CompounderDashboard";
+import FlowPage from "@/pages/FlowPage";
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
 
@@ -62,6 +63,7 @@ const App = () => (
       <BrowserRouter>
         <AuthProvider>
           <Routes>
+            <Route path="/flow" element={<FlowPage />} />
             <Route path="*" element={<AppContent />} />
           </Routes>
         </AuthProvider>
