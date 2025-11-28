@@ -6,13 +6,21 @@ import { DoctorDashboard } from '@/components/doctor/DoctorDashboard';
 import { CompounderDashboard } from '@/components/compounder/CompounderDashboard';
 
 const Index = () => {
-  const { user } = useAuth();
+  const { user, userRole, isLoading } = useAuth();
 
-  if (!user) {
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-pulse text-lg">Loading...</div>
+      </div>
+    );
+  }
+
+  if (!user || !userRole) {
     return <LoginScreen />;
   }
 
-  switch (user.role) {
+  switch (userRole) {
     case 'patient':
       return <PatientDashboard />;
     case 'doctor':
