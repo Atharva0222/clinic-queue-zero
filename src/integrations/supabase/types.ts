@@ -14,16 +14,233 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      appointments: {
+        Row: {
+          created_at: string
+          date: string
+          doctor_id: string
+          estimated_wait_time: number | null
+          id: string
+          notes: string | null
+          patient_id: string
+          queue_position: number | null
+          status: Database["public"]["Enums"]["appointment_status"]
+          symptoms: string | null
+          time_slot: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          date: string
+          doctor_id: string
+          estimated_wait_time?: number | null
+          id?: string
+          notes?: string | null
+          patient_id: string
+          queue_position?: number | null
+          status?: Database["public"]["Enums"]["appointment_status"]
+          symptoms?: string | null
+          time_slot: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          doctor_id?: string
+          estimated_wait_time?: number | null
+          id?: string
+          notes?: string | null
+          patient_id?: string
+          queue_position?: number | null
+          status?: Database["public"]["Enums"]["appointment_status"]
+          symptoms?: string | null
+          time_slot?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "appointments_doctor_id_fkey"
+            columns: ["doctor_id"]
+            isOneToOne: false
+            referencedRelation: "doctors"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      doctors: {
+        Row: {
+          consultation_time: number
+          created_at: string
+          experience: number
+          id: string
+          next_available: string | null
+          rating: number | null
+          specialization: string
+          status: Database["public"]["Enums"]["doctor_status"]
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          consultation_time?: number
+          created_at?: string
+          experience?: number
+          id?: string
+          next_available?: string | null
+          rating?: number | null
+          specialization: string
+          status?: Database["public"]["Enums"]["doctor_status"]
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          consultation_time?: number
+          created_at?: string
+          experience?: number
+          id?: string
+          next_available?: string | null
+          rating?: number | null
+          specialization?: string
+          status?: Database["public"]["Enums"]["doctor_status"]
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      notifications: {
+        Row: {
+          created_at: string
+          id: string
+          message: string
+          read: boolean
+          title: string
+          type: Database["public"]["Enums"]["notification_type"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          message: string
+          read?: boolean
+          title: string
+          type?: Database["public"]["Enums"]["notification_type"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          message?: string
+          read?: boolean
+          title?: string
+          type?: Database["public"]["Enums"]["notification_type"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar: string | null
+          created_at: string
+          email: string
+          id: string
+          name: string
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          avatar?: string | null
+          created_at?: string
+          email: string
+          id: string
+          name: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          avatar?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          name?: string
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      queue_items: {
+        Row: {
+          appointment_id: string
+          created_at: string
+          estimated_time: number | null
+          id: string
+          status: Database["public"]["Enums"]["queue_status"]
+          updated_at: string
+        }
+        Insert: {
+          appointment_id: string
+          created_at?: string
+          estimated_time?: number | null
+          id?: string
+          status?: Database["public"]["Enums"]["queue_status"]
+          updated_at?: string
+        }
+        Update: {
+          appointment_id?: string
+          created_at?: string
+          estimated_time?: number | null
+          id?: string
+          status?: Database["public"]["Enums"]["queue_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "queue_items_appointment_id_fkey"
+            columns: ["appointment_id"]
+            isOneToOne: false
+            referencedRelation: "appointments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "patient" | "doctor" | "compounder"
+      appointment_status: "booked" | "in-progress" | "completed" | "cancelled"
+      doctor_status: "available" | "busy" | "away"
+      notification_type: "info" | "warning" | "success" | "error"
+      queue_status: "waiting" | "in-progress" | "completed"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +367,12 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["patient", "doctor", "compounder"],
+      appointment_status: ["booked", "in-progress", "completed", "cancelled"],
+      doctor_status: ["available", "busy", "away"],
+      notification_type: ["info", "warning", "success", "error"],
+      queue_status: ["waiting", "in-progress", "completed"],
+    },
   },
 } as const
